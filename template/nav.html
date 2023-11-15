@@ -1,0 +1,56 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar bg-white">
+    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/i1.png' %}"  style="width: 30px; height: 30px">Hospital Management System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        {% if not request.user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'admin_login' %}">Login</a>
+        </li>
+        {% endif %}
+        {% if request.user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'dashboard' %}">Dashboard<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Doctor
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'view_doctor' %}">View_Doctor</a>
+            <a class="dropdown-item" href="{% url 'add_doctor' %}">Add_Doctor</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Patient </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'view_patient' %}">View_Patient</a>
+            <a class="dropdown-item" href="{% url 'add_patient' %}">Add_Patient</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Appointment
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'view_appointment' %}">View_Appointment</a>
+            <a class="dropdown-item" href="{% url 'add_appointment' %}">Add_Appointment</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout_admin' %}">Logout</a>
+        </li>
+        {% endif %}
+      </ul>
+      </div>
+</nav>

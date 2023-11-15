@@ -1,0 +1,25 @@
+{% include 'base.html' %}
+{% include 'nav.html' %}
+{% include "footer.html" %}
+{% load static %}
+{% block content %}
+
+{% if error == "no" %}
+<script>
+    alert('logged successfully ');
+    window.location = "{% url 'dashboard' %}";
+</script>
+{% endif %}
+
+<div class="container">
+    <h2 class="text-center">Admin Login</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Admin Name:</label>
+        <input type="text" class="form-control" name="aname" /><br>
+        <label>Password:</label>
+        <input type="password" class="form-control" name="pswd" /><br>
+        <input type="submit" value="Login" class="from-control btn btn-primary" />
+    </form>
+</div>
+{% endblock content %}

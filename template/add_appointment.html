@@ -1,0 +1,37 @@
+ {% include 'base.html' %}
+{% load static %}
+{% include 'nav.html' %}
+{% include 'footer.html' %}
+{% block content %}
+
+{% if error == "no" %}
+<script>
+    alert('logged successfully ');
+    window.location = "{% url 'view_appointment' %}";
+</script>
+{% endif %}
+
+<div class="container">
+    <h2 class="text-center">Add Appointment</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Doctor Name:</label>
+        <select name="dname" class="form-control">
+         {% for i in doctor %}
+            <option value="{{i.Name}}">{{i.Name}}</option>
+         {% endfor %}
+        </select><br>
+        <label>Patient Name:</label>
+        <select name="pname" class="form-control">
+         {% for i in patient %}
+            <option value="{{i.name}}">{{i.name}}</option>
+         {% endfor %}
+        </select><br>
+        <label>Date:</label>
+        <input type="date" class="form-control" name="date" />
+        <label>Time:</label>
+        <input type="time" class="form-control" name="time" />
+        <input type="submit" value="Add" class="from-control btn btn-primary" />
+    </form>
+</div>
+{% endblock content %}

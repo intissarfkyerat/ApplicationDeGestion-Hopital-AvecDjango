@@ -1,0 +1,35 @@
+{% include 'base.html' %}
+{% load static %}
+{% include 'nav.html' %}
+{% include 'footer.html' %}
+<div>
+
+    <h2 class="text-center">View Doctor</h2>
+    <table id="example" class="table table-striped">
+        <thead>
+        <tr>
+            <th>Patient Id</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+          {% for i in pat %}
+          <tr>
+              <td>{{i.id}}</td>
+              <td>{{i.name}}</td>
+              <td>{{i.gender}}</td>
+              <td>{{i.mobile}}</td>
+               <td>{{i.address}}</td>
+              <td><a href="{% url 'delete_patient' i.id %}" onclick="return confirm('Are you sure you want to delete ?')" class="btn btn-danger" >Delete</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+
+    </table>
+
+
+</div>

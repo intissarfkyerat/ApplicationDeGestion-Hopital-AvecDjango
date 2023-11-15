@@ -1,0 +1,33 @@
+ {% include 'base.html' %}
+{% load static %}
+{% include 'nav.html' %}
+{% include 'footer.html' %}
+{% block content %}
+
+{% if error == "no" %}
+<script>
+    alert('logged successfully ');
+    window.location = "{% url 'view_patient' %}";
+</script>
+{% endif %}
+
+<div class="container">
+    <h2 class="text-center">Add Patient</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Patient Name:</label>
+        <input type="text" class="form-control" name="name" /><br>
+        <label>Gender:</label>
+        <select name="gender" class="form-control">
+            <option value=""></option>
+            <option value="">female</option>
+            <option value="">male</option>
+        </select><br>
+        <label>Mobile:</label>
+        <input type="number" class="form-control" name="mobile" /><br>
+        <label>Address:</label>
+        <input type="text" class="form-control" name="address" />
+        <input type="submit" value="Add" class="from-control btn btn-primary" />
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% include 'base.html' %}
+{% load static %}
+{% include 'nav.html' %}
+<style>
+     .mydivstyle:hover{
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+        transform: translateY(-20px);
+}
+     hr.rownded{
+       border-top: 10px solid lightblue;
+       border-radius: 5px;
+}
+</style>
+
+{% block content %}
+<h1 class="text-center">Admin Dashboard</h1>
+<br>
+<div class="container">
+  <div class="row" >
+      <div class="col-sm-4 mydivstyle">
+        <h2 style="color : red;">{{d}}</h2>
+        <a href="{% url 'view_doctor' %}">
+            <h4 style="color : blue;" >Doctor</h4>
+            <hr class="rownded">
+        </a>
+      </div>
+      <div class="col-sm-4 mydivstyle">
+        <h2 style="color : red;">{{p}}</h2>
+        <a href="{% url 'view_patient' %}">
+            <h4 style="color : blue;" >Patient</h4>
+            <hr class="rownded">
+        </a>
+      </div>
+      <div class="col-sm-4 mydivstyle">
+        <h2 style="color : red;">{{a}}</h2>
+        <a href="{% url 'view_appointment' %}">
+            <h4 style="color : blue;" >Appointment</h4>
+            <hr class="rownded">
+        </a>
+      </div>
+
+   {% if chart %}
+            <img src="data:images/png;base64, {{chart|safe}}">
+   {% endif %}
+   </div>
+</div>
+{% endblock %}
+{% include 'footer.html' %}
